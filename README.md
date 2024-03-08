@@ -1,5 +1,4 @@
-# Y2_2024_47804
-# Mag Guessing Game
+# Y2_2024_47804 – Mag Guessing Game
 
 ## Checkpoint 3 / Checkpoint 6
 
