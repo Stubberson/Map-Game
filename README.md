@@ -14,14 +14,18 @@ country’s flag. Additional hints (e.g. capital and population number) about th
 if the player guesses the country wrong.
 
 ## Instructinos
-    - Is it possible to run the program? no
+    - Is it possible to run the program? yes
     - How is the program executed?
+    From the "main.py" module.
 
 ## Schedule
     - How much time have you spent making the project so far?
+    10h
     - Have you made chages to the schedule?
+    Nope
 
 ## Other
     - Have you faced any specific problems?
+    Of course, lots.
     - Have you had to make changes to your plan?
 
