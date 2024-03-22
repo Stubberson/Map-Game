@@ -3,7 +3,9 @@
 ## Checkpoint 3 / Checkpoint 6
 
 ## Current properties
-No properties as of yet.
+Main navigation of the game works kinda ok. Player can switch from the welcoming window to the main game mode
+and go to the statistics window and back, as well. The main game mode is currently very bare, but that I will
+work on next week.
 
 ## Description of the project
 The basic interface of the game would have an interactive map which gives the player information
@@ -14,14 +16,18 @@ country’s flag. Additional hints (e.g. capital and population number) about th
 if the player guesses the country wrong.
 
 ## Instructinos
-    - Is it possible to run the program? no
+    - Is it possible to run the program? yes
     - How is the program executed?
+        From the "main.py" module.
 
 ## Schedule
     - How much time have you spent making the project so far?
+        10h
     - Have you made chages to the schedule?
+        Nope
 
 ## Other
     - Have you faced any specific problems?
+        Of course, lots.
     - Have you had to make changes to your plan?
 
