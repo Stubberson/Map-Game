@@ -40,7 +40,7 @@ class MainWidget(QtWidgets.QWidget):
         main_layout.addWidget(self.stack)
         self.setLayout(main_layout)
 
-        # Additional parameters for the main window
+        # Additional parameters for the main widget
         self.setGeometry(300, 500, 500, 500)
         self.setWindowTitle("Map Guessing Game")
 
@@ -86,14 +86,15 @@ class MainWidget(QtWidgets.QWidget):
         # Add an input box for the user to guess the country and a submit button to submit the answer
         self.input_field = QtWidgets.QLineEdit()
         submit_button = QtWidgets.QPushButton("Submit", self)
-        submit_button.clicked.connect(self.get_input)
 
         # Test how one country's outlines draw on the layout
-        country_outlines = CountryOutlines()
+        self.country_outlines = CountryOutlines()
+
+        submit_button.clicked.connect(self.get_input)
 
         # Add the widgets to the layout in the correct order
         layout.addWidget(back_button)
-        layout.addWidget(country_outlines)
+        layout.addWidget(self.country_outlines)
         layout.addWidget(self.input_field)
         layout.addWidget(submit_button)
 
@@ -142,13 +143,17 @@ class MainWidget(QtWidgets.QWidget):
 
     def get_input(self):
         """
-        Get the guess for a country and store it in variable for checking whether the answer was
+        Get the player's guess for a country and store it in variable for checking whether the answer was
         right or wrong.
         """
         # The guess for the country
         guess = self.input_field.text()
-        # Add the guess to the counter
-        self.guess_counter += 1
-        # After the submit button has been clicked, clear the input field for being able to guess again
-        self.input_field.clear()
-        print(self.guess_counter)
+        guess = guess.lower()  # Lowercase for easier checking for the right answer
+        self.input_field.clear()  # After the submit button has been clicked, clear the input field to guess again
+        self.guess_counter += 1  # Add the guess to the counter
+
+        # Check if the input is the correct answer for the country
+        self.country_outlines.check_answer(guess)
+
+
+
