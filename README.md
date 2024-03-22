@@ -22,7 +22,7 @@ if the player guesses the country wrong.
 
 ## Schedule
     - How much time have you spent making the project so far?
-        10h
+        20h
     - Have you made chages to the schedule?
         Nope
 
