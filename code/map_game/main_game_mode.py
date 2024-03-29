@@ -29,9 +29,8 @@ class MainPlayWidget(QtWidgets.QWidget):
         self.label.setGeometry(0, 0, 420, 300)
         self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)  # Set alignment of the label
 
-        # Set up a timer for the player to be able to read the info before moving onto the next country
+        # Set up a timer for the player to be able to read some prompts
         self.timer = QtCore.QTimer()
-        self.timer.setSingleShot(True)
 
         self.country_counter = 0  # Counter for changing the shown country outlines, check_answer method adds to it
         self.show_outlines()
@@ -74,6 +73,7 @@ class MainPlayWidget(QtWidgets.QWidget):
     def show_outlines(self):
         # Set a country's outlines as the picture to be shown
         self.guess_counter = 0  # Always reset the guess counter when a new country is to be guessed
+        print(self.country_counter, self.guess_counter)
 
         # Game over if no more countries to be guessed
         if self.country_counter == self.get_number_of_countries():
@@ -92,28 +92,38 @@ class MainPlayWidget(QtWidgets.QWidget):
 
         # If the guess = current_country, the guess is correct. Otherwise, give another hint.
         if guess == self.current_country:
-            if self.country_counter <= len(self.country_widgets) - 1:  # Only add to the counter if countries to guess
-                if self.guess_counter == 1:
-                    self.points_counter += 5  # Most points for fewest number of guesses
-                elif self.guess_counter == 2:
-                    self.points_counter += 3
-                elif self.guess_counter == 3:
-                    self.points_counter += 1
-                self.country_counter += 1
-                self.show_outlines()
+            self.round_points = 0  # For informing how many points the player got from a round
+
+            if self.guess_counter == 1:
+                self.points_counter += 6  # Most points for fewest number of guesses
+                self.round_points = 6
+            elif self.guess_counter == 2:
+                self.points_counter += 4
+                self.round_points = 4
+            elif self.guess_counter == 3:
+                self.points_counter += 2
+                self.round_points = 2
+            else:
+                self.points_counter += 1
+                self.round_points = 1
+
+            self.country_counter += 1
+            self.correct_answer()  # Show the player that the answer was correct, and how many points they got
+            self.timer.singleShot(2000, self.show_outlines)  # Wait 2secs to congratulate the player
         elif guess != self.current_country and self.guess_counter == 1:
             self.label.setText("Incorrect!\nThe capital is " + Country(self.current_country).get_capital())
         elif guess != self.current_country and self.guess_counter == 2:
             self.label.setText("Incorrect!\nThe population is " + Country(self.current_country).get_population() + " million")
         elif guess != self.current_country and self.guess_counter == 3:
             self.label.setText("Incorrect!\nThe neighboring countries are " + Country(self.current_country).get_neighbors())
-        elif self.guess_counter > 3:
-            # Show the information of the country if the player cannot guess it in 3 guesses, and move on
+        elif guess != self.current_country and self.guess_counter == 4:
+            # Show the information of the country if the player cannot guess it in 4 guesses, and move on
             self.show_country_information()
             self.country_counter += 1
+            self.timer.singleShot(7000, self.show_outlines)  # 7 seconds timer
 
-            self.timer.start(7000)  # 7 seconds timer
-            self.timer.timeout.connect(self.show_outlines)  # Displays the next country after the time has passed
+    def correct_answer(self):
+        self.label.setText(f"Correct! You scored {self.round_points} point(s)!")
 
     def show_country_information(self):
         """ After too many guesses, the country's information is given to the player. """
@@ -121,7 +131,6 @@ class MainPlayWidget(QtWidgets.QWidget):
 
     def game_over(self):
         """ When there are no more countries to be guessed, end the game and show the scores to the player. """
-        print("GAME OVER")
         self.label.setText(f"End of the game!\nYou scored {self.get_score()} points!")
 
     def get_guesses(self):

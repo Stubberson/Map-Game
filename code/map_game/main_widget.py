@@ -69,6 +69,7 @@ class MainWidget(QtWidgets.QWidget):
         """ Creates and adds the play widget to the stack. """
 
         layout = QtWidgets.QVBoxLayout()
+        info_layout = QtWidgets.QHBoxLayout()
 
         # Button to get back to the main widget
         back_button = QtWidgets.QPushButton(self)
@@ -92,13 +93,17 @@ class MainWidget(QtWidgets.QWidget):
         # Set a score label, so that the player sees how many points he has acquired
         self.score_label = QtWidgets.QLabel(f"Score: 0")
         self.score_label.setFixedSize(60, 20)
-        self.score_label.move(250, 50)
+        info_layout.addWidget(self.score_label)
+        # Set a guess labels, so that the player knows how many guesses they have left
+        self.guess_label = QtWidgets.QLabel(f"Guesses left: 4")
+        self.guess_label.setFixedSize(100, 20)
+        info_layout.addWidget(self.guess_label, 0, QtCore.Qt.AlignmentFlag.AlignRight)
 
         self.submit_button.clicked.connect(self.get_input)
 
         # Add the widgets to the layout in the correct order
         layout.addWidget(back_button)
-        layout.addWidget(self.score_label)
+        layout.addLayout(info_layout)
         layout.addWidget(self.main_mode)
         layout.addWidget(self.input_field)
         layout.addWidget(self.submit_button)
@@ -159,23 +164,27 @@ class MainWidget(QtWidgets.QWidget):
         # Check if the input is the correct answer for the country
         self.main_mode.check_answer(guess)
 
-        # Tie the score update to the pressing of the button to make it recursive
+        # Tie the score update to the pressing of the button
         self.update_score()
 
         # Disable the submit button when there are no more guesses left, and enable it again after that.
-        self.main_timer.timeout.connect(self.enable_submit)
-        duration = self.main_mode.timer.remainingTime()  # The remaining time of the timer in MainWidget
         guesses = self.main_mode.get_guesses()
-        if guesses > 3:
+        countries_to_guess = self.main_mode.get_number_of_countries()
+        country_count = self.main_mode.country_counter
+        if guesses > 3 and country_count != countries_to_guess:
             self.submit_button.setEnabled(False)
-            self.main_timer.start(duration)
-        elif self.main_mode.country_counter == self.main_mode.get_number_of_countries():  # Disable the button for good
+            self.main_timer.singleShot(7000, self.enable_submit)
+
+        if country_count == countries_to_guess:  # Disable the button for good when the game is over
             self.submit_button.setEnabled(False)
 
     def update_score(self):
         # Update the score and show it to the player
         score = self.main_mode.get_score()
         self.score_label.setText(f"Score: {score}")
+
+    def update_guesses(self, guesses):
+        self.guess_label.setText(f"Guesses left: {4 - guesses}")
 
     def enable_submit(self):
         self.submit_button.setEnabled(True)
