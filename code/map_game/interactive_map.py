@@ -24,6 +24,8 @@ class InteractiveMap(QtWidgets.QWidget):
         self.map_image = self.map_image.scaledToHeight(500)
         self.map_label.setPixmap(self.map_image)
 
+        self.info_box = QtWidgets.QMessageBox(self)  # For displaying country info
+
         self.layout = QtWidgets.QHBoxLayout()
         self.layout.addWidget(self.map_label)
         self.setLayout(self.layout)
@@ -174,14 +176,12 @@ class InteractiveMap(QtWidgets.QWidget):
 
     def display_region_info(self, region):
         # Display information about the clicked region
-        info_box = QtWidgets.QMessageBox(self)
         icon = QtGui.QPixmap("GUI_items/info_icon.png")
 
         for path in self.countries_paths:
             if region is not None and region in path:
-                info_box.setIconPixmap(icon)
-                info_box.setText(region.capitalize())
-                info_box.setInformativeText(Country(region).__str__())
-                info_box.exec()
-
+                self.info_box.setIconPixmap(icon)
+                self.info_box.setText(region.capitalize())
+                self.info_box.setInformativeText(Country(region).__str__())
+                self.info_box.exec()
 

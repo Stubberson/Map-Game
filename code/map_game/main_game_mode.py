@@ -81,11 +81,7 @@ class MainPlayWidget(QtWidgets.QWidget):
 
     def check_answer(self, guess):
         """ Check if the guess was correct or not. Show hints and update score accordingly. """
-
-        correct_answer_path = self.get_current_path()  # Get the correct current_country's path
-        split_path = correct_answer_path.rsplit("/")  # 3rd item is the country name + file type (e.g. finland.png)
-        current_country = split_path[3]
-        self.current_country = current_country.rsplit(".")[0]
+        self.current_country = self.get_current_country()
         self.guess_counter += 1
 
         # If the guess = current_country, the guess is correct. Otherwise, give another hint.
@@ -111,12 +107,15 @@ class MainPlayWidget(QtWidgets.QWidget):
             return True
         elif guess != self.current_country and self.guess_counter == 1:
             self.label.setText("Incorrect!\nThe capital is " + Country(self.current_country).get_capital() + ".")
+            return False
         elif guess != self.current_country and self.guess_counter == 2:
             self.label.setText("Incorrect!\nThe population is " + Country(self.current_country).get_population() + " million.")
+            return False
         elif guess != self.current_country and self.guess_counter == 3:
             self.label.setText("Incorrect!\nThe neighboring countries are " + Country(self.current_country).get_neighbors() + ".")
+            return False
         elif guess != self.current_country and self.guess_counter == 4:
-            # Show the information of the country if the player cannot guess it in 4 guesses, and move on
+            # Show the information of the country if the player cannot guess it in 4 guesses, and move on. No points.
             self.show_country_information()
             self.country_counter += 1
             self.timer.singleShot(7000, self.show_outlines)  # 7 seconds timer
@@ -144,6 +143,13 @@ class MainPlayWidget(QtWidgets.QWidget):
 
     def get_current_path(self):
         return self.shuffled_paths[self.country_counter]
+
+    def get_current_country(self):
+        correct_answer_path = self.get_current_path()  # Get the correct current_country's path
+        split_path = correct_answer_path.rsplit("/")  # 3rd item is the country name + file type (e.g. finland.png)
+        current_country = split_path[3]
+        current_country = current_country.rsplit(".")[0]
+        return current_country
 
     def get_number_of_countries(self):
         return len(self.country_widgets)
