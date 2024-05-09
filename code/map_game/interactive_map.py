@@ -1,5 +1,6 @@
 import os
-from PyQt6 import QtWidgets, QtGui
+import sys
+from PyQt6 import QtWidgets, QtGui, QtCore, QtMultimedia
 from countries_information import Country
 
 
@@ -26,6 +27,10 @@ class InteractiveMap(QtWidgets.QWidget):
 
         self.info_box = QtWidgets.QMessageBox(self)  # For displaying country info
 
+        # For playing national anthems
+        self.player = QtMultimedia.QMediaPlayer()
+        self.audio_output = QtMultimedia.QAudioOutput()
+
         self.layout = QtWidgets.QHBoxLayout()
         self.layout.addWidget(self.map_label)
         self.setLayout(self.layout)
@@ -37,6 +42,9 @@ class InteractiveMap(QtWidgets.QWidget):
 
         # Determine which region was clicked based on mouse coordinates
         clicked_region = self.get_clicked_region(x, y)
+
+        # Play the national anthem
+        self.play_national_anthem(clicked_region)
 
         # Highlight the clicked region
         self.highlight_region(clicked_region)
@@ -184,4 +192,18 @@ class InteractiveMap(QtWidgets.QWidget):
                 self.info_box.setText(region.capitalize())
                 self.info_box.setInformativeText(Country(region).__str__())
                 self.info_box.exec()
+
+    def play_national_anthem(self, region):
+        for path in self.countries_paths:
+            if region is not None and region in path:
+                self.player.setAudioOutput(self.audio_output)
+                self.player.setSource(QtCore.QUrl.fromLocalFile(f"anthems/" + region + ".mp3"))
+                self.audio_output.setVolume(100)
+                self.player.play()
+
+                self.info_box.finished.connect(self.stop_audio)
+
+    def stop_audio(self):
+        self.player.stop()
+
 
