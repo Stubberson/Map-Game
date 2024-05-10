@@ -1,4 +1,3 @@
-import sys
 from PyQt6 import QtWidgets, QtGui, QtCore
 from main_game_mode import MainPlayWidget
 from interactive_map import InteractiveMap

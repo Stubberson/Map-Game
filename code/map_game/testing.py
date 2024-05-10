@@ -1,7 +1,7 @@
 import sys
 import random
 import unittest
-from PyQt6 import QtWidgets, QtGui, QtCore
+from PyQt6 import QtWidgets, QtCore
 from PyQt6.QtTest import QTest
 
 from main_widget import MainWidget

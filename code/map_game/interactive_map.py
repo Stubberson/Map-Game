@@ -1,5 +1,4 @@
 import os
-import sys
 from PyQt6 import QtWidgets, QtGui, QtCore, QtMultimedia
 from countries_information import Country
 
