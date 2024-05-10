@@ -190,7 +190,7 @@ class InteractiveMap(QtWidgets.QWidget):
             if region is not None and region in path:
                 self.info_box.setIconPixmap(icon)
                 self.info_box.setText(region.capitalize())
-                self.info_box.setInformativeText(Country(region).__str__())
+                self.info_box.setInformativeText(f"{Country(region).__str__()}\n\nCool to know: {Country(region).get_extra()}")
                 self.info_box.exec()
 
     def play_national_anthem(self, region):

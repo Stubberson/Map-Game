@@ -59,10 +59,51 @@ class Country:
                      "ireland": "United Kingdom",
                      "iceland": "–"}
 
+        EXTRA = {"finland": "Finland has the most lakes in Europe, with approximately 188,000 lakes.",
+                 "sweden": "In the capital of Sweden, Stockholm, the metro system also doubles as an art gallery, with 90% of metro stations decorated.",
+                 "norway": "Norway is home to the longest road tunnel in the world, the Lærdal Tunnel (24.5 km).",
+                 "russia": "Russia‘s Lake Baikal is the world’s deepest and oldest freshwater lake.",
+                 "denmark": "Denmark is frequently ranked as one of the world’s happiest countries.",
+                 "estonia": "Estonia has the highest number of meteorite craters per land area in the world.",
+                 "latvia": "Latvia has one of the world’s highest rates of forest coverage.",
+                 "lithuania": "Lithuania was the last European country to convert to Christianity, in the late 14th century.",
+                 "belarus": "Belarus has the world’s largest population of European bison, also known as wisent.",
+                 "poland": "Poland has the world’s largest castle by land area, it is known as the Castle of the Teutonic Order in Malbork.",
+                 "ukraine": "Slava Ukraini!",
+                 "moldova": "Moldova is home to the largest wine cellar in the world, Milestii Mici, which spans over 200 kilometres.",
+                 "romania": "Romania is home to Europe’s largest virgin forests.",
+                 "serbia": "Serbia‘s capital, Belgrade, has been fought over in 115 wars and razed to the ground 44 times throughout history.",
+                 "bulgaria": "The Cyrillic alphabet, used by many Eastern European countries,\nwas created in Bulgaria during the 9th century.",
+                 "north macedonia": "North Macedonia is the only country to gain independence from Yugoslavia without any bloodshed.",
+                 "kosovo": "Kosovo is the youngest country in Europe, declaring independence from Serbia in 2008.",
+                 "greece": "The Olympic Games originated in ancient Greece in 776 BC.",
+                 "turkey": "Istanbul, Turkey, is the only city in the world that straddles two continents, Europe and Asia.",
+                 "albania": "In some areas on the country,\nAlbanians nod their heads to indicate “no” and shake their heads for “yes.”",
+                 "montenegro": "The Bay of Kotor in Montenegro is one of the world’s deepest and longest fjord-like bays.",
+                 "bosnia and herzegovina": "The Stari Most (Old Bridge) in Mostar is a UNESCO World Heritage Site",
+                 "croatia": "Croatia has the world’s smallest town, Hum, with a population of around 30 people.",
+                 "slovenia": "Slovenia is home to the Postojna Cave, the largest show cave in Europe, which has a unique train ride for visitors.",
+                 "hungary": "Hungary is home to the world’s largest thermal water cave system.",
+                 "czechia": "Czechia has the highest beer consumption per capita in the world.",
+                 "slovakia": "Slovakia has more than 6,000 caves, including the remarkable ice caves of the Slovak Paradise National Park.",
+                 "germany": "There's a German girl that I love. She's caring, beautiful, intelligent; the whole package...",
+                 "austria": "In Austria the Alps mountain range covers about 62% of the country.",
+                 "switzerland": "Switzerland is famous for its neutrality and has not been involved in any wars since 1815.",
+                 "netherlands": "The Netherlands is the world’s biggest flower exporter.",
+                 "italy": "Italy has the most UNESCO World Heritage Sites, with over 50 locations.",
+                 "belgium": "Brussels, Belgium, is home to the European Union and NATO headquarters.",
+                 "france": "The Eiffel Tower in Paris, France was initially meant to be a temporary structure for the 1889 World’s Fair.",
+                 "spain": "Spain is home to the world’s oldest restaurant, Sobrino de Botín, established in 1725.",
+                 "portugal": "Portugal is one of the world’s top cork producers, responsible for over 50% of global cork production.",
+                 "united kingdom": "Windsor Castle in the United Kingdom is the oldest and longest-occupied palace by a monarch in the world.",
+                 "ireland": "Halloween’s origins can be traced back to the ancient Celtic festival of Samhain in Ireland.",
+                 "iceland": "Iceland is one of the few countries in the world with no mosquitoes."}
+
         self.name = country
         self.capital = CAPITALS[country]
         self.population = POPULATION[country]
         self.neighboring_countries = NEIGHBORS[country]
+        self.extra = EXTRA[country]
 
     def get_capital(self):
         return self.capital
@@ -72,6 +113,9 @@ class Country:
 
     def get_neighbors(self):
         return self.neighboring_countries
+
+    def get_extra(self):
+        return self.extra
 
     def __str__(self):
         string = f"\nCountry: {self.name.capitalize()}\n"  # Name is given in lowercase, capitalize.
