@@ -1,34 +1,25 @@
 # Y2_2024_47804 – Mag Guessing Game
 
-## Checkpoint 3 / Checkpoint 6
-
-## Current properties
-Checkpoint 3: Main navigation of the game works kinda ok. Player can switch from the welcoming window to the main game mode and go to the statistics window and back, as well. The main game mode is currently very bare, but that I will work on next week.
-
-Checkpoint 6: Navigation is working. Main game mode works so that it can be played. Interactive map is in a good state. Main game mode will be worked on and some quality-of-life improvements will be added.
-
 ## Description of the project
-The basic interface of the game would have an interactive map which gives the player information
-about a country when the country is selected. There would be a few game modes to make the
-application more intriguing: a guessing game where the player tries to guess a country based on
-the country’s borders, and another one where the player guesses the country based on the
-country’s flag. Additional hints (e.g. capital and population number) about the country will be given
-if the player guesses the country wrong.
+The game has two modes, a game mode where the player can guess a European country from a map highlighted by the country’s flag, and an interactive map which gives the player information about a country when the country is selected. 
 
-## Instructinos
-    - Is it possible to run the program? yes
-    - How is the program executed?
-        From the "main.py" module.
+Additional hints (e.g. capital and population number) about the country are given if the player guesses the country wrong. My project’s uniqueness comes from experimenting with audio. The national anthem is played for the player in the interactive map.
+
+## File and directory structure
+There are three directories in my project: .idea, code, and document. ".idea" I have no idea what it's about, some automatic mumbojumbo probably important for something. As a player you ignore it. "code" includes all the code for the program as well as the files needed to run the code. The module names should speak for themselves. "document" directory includes the plan, documentation, and demo for the program/project.
+
+## User instructions
+Execute the program from the "main.py" module in the "code" directory. It should be quite esy to go from there.
+
+The program doesn't need any external libraries.
 
 ## Schedule
-    - How much time have you spent making the project so far?
-        60h
-    - Have you made changes to the schedule?
-        I have not.
+    - How much time have you spent making the project?
+        Approx. 65h
 
 ## Other
     - Have you faced any specific problems?
         Of course, lots. Nothing absolutely insurmountable though.
     - Have you had to make changes to your plan?
-        Yes I have, I sctrached the statistics idea (for now at least) to focus on the main functionality.
+        Yes I have, I sctrached the statistics idea to focus on the main functionality.
 
