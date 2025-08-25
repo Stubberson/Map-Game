@@ -6,6 +6,13 @@ The game has two modes, a game mode where the player can guess a European countr
 
 Additional hints (e.g. capital and population number) about the country are given if the player guesses the country wrong. My project’s uniqueness comes from experimenting with audio. The national anthem is played for the player in the interactive map.
 
+## Demo
+
+
+https://github.com/user-attachments/assets/110f4249-d1a8-4fe8-a3c0-7484f0b71f27
+
+
+
 ## File and directory structure
 There are three directories in my project: .idea, code, and document. `.idea` can be ignored. `code` includes all the code for the program as well as the files needed to run the code. The module names should speak for themselves. `document` directory includes the plan, documentation, and demo for the program/project.
 
