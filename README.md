@@ -1,5 +1,5 @@
 # Mag Guessing Game
-A school project for a programming course.
+A school project for a programming course. A game programmed with Python and the PyQT GUI toolkit.
 
 ## Description of the project
 The game has two modes, a game mode where the player can guess a European country from a map highlighted by the country’s flag, and an interactive map which gives the player information about a country when the country is selected. 
