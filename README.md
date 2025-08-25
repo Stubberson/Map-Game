@@ -9,7 +9,8 @@ Additional hints (e.g. capital and population number) about the country are give
 ## Demo
 
 
-https://github.com/user-attachments/assets/110f4249-d1a8-4fe8-a3c0-7484f0b71f27
+
+https://github.com/user-attachments/assets/8c4097ed-e98e-4dff-b90e-b47927e83d81
 
 
 
