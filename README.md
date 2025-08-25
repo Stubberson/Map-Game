@@ -18,5 +18,3 @@ There are three directories in my project: .idea, code, and document. `.idea` ca
 
 ## User instructions
 Execute the program from the `main.py` module in the `code` directory. It is intuitive to go from there.
-
-The program doesn't need any external libraries.
